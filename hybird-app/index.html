@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title></title>
+		<script src="js/vue.js"></script>
+		<script src="js/jquery.js"></script>
+	</head>
+
+	<body>
+		<div id="demo">
+			<p>{{name}}</p>
+			<button @click="capture">拍照</button>
+			<img style="width: 100%; height: 500px;" :src="src" />
+			<button @click="getLocation">获取定位</button>
+			<button @click="sendMessage">发送信息</button>
+		</div>
+		<script type="text/javascript">
+			new Vue({
+				el: "#demo",
+				data: {
+					name: "ly",
+					src: ""
+				},
+				mounted: function() {
+
+				},
+				methods: {
+					//拍照
+					capture: function() {
+						var self = this;
+						//获取摄像头的对象
+						var cmr = plus.camera.getCamera();
+						//图像分辨率
+						var res = cmr.supportedImageResolutions[0];
+						//图像的格式
+						var fmt = cmr.supportedImageFormats[0];
+						console.log("Resolution: " + res + ", Format: " + fmt);
+						//拍照
+						cmr.captureImage(function(path) {
+								self.openImage(path);
+								console.log(path);
+								alert("Capture image success: " + path);
+							},
+							function(error) {
+								alert("Capture image failed: " + error.message);
+							}, {
+								resolution: res,
+								format: fmt
+							}
+						);
+					},
+					//读取照片
+					openImage: function(path) {
+						var self = this;
+						plus.io.resolveLocalFileSystemURL(path, function(entry) {
+							console.log(entry.fullPath);
+							self.src = entry.fullPath;
+						})
+					},
+					//定位
+					getLocation: function() {
+						plus.geolocation.watchPosition(function(a) {
+							console.log(a)
+							//alert('Geolocation\nLatitude:' + p.coords.latitude + '\nLongitude:' + p.coords.longitude + '\nAltitude:' + p.coords.altitude);
+						}, function(e) {
+							alert('Geolocation error: ' + e.message);
+						});
+					},
+					//发送短信
+					sendMessage() {
+						var msg = plus.messaging.createMessage(plus.messaging.TYPE_SMS);
+						msg.to = ['18611497504', '15811140520'];
+						msg.body = 'This is HTML5 Plus example test message';
+						plus.messaging.sendMessage(msg);
+					}
+				}
+			})
+		</script>
+	</body>
+
+</html>

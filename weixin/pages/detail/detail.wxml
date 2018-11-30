@@ -1,0 +1,4 @@
+<!--pages/detail/detail.wxml-->
+<text>pages/detail/detail.wxml</text>
+<xheader></xheader>
+<view wx:for="{{array}}"> {{item.name}} {{item.age}} </view>

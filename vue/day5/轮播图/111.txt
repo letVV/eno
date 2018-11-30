@@ -1,0 +1,38 @@
+			Vue.component('app-banner', {
+				template: '#app-banner',
+				data() {
+					return {
+						banners: [],
+					}
+				},
+				methods: {
+					getBanners() {
+						this.$http.get('./banners.json').then(res => {
+
+							//更改数据
+							this.banners = res.data.bannerList
+							//回调函数会在上一次数据改变所引起的dom更新完成后触发
+							Vue.nextTick(() => {
+								this.swiper = new Swiper('.swiper-container', {
+									autoplay: true,
+									pagination: {
+										el: '.swiper-pagination',
+									},
+									autoplay: {
+										disableOnInteraction: false
+									}
+								})
+								console.log(this.swiper)
+								this.swiper.el.onmouseover = function() {
+									this.swiper.autoplay.stop();
+
+								}
+								this.swiper.el.onmouseout = function() {
+									this.swiper.autoplay.start();
+
+								}
+							})
+
+						})
+					}
+				},

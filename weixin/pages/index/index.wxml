@@ -1,0 +1,48 @@
+<scroll-view scroll-y style="height: 200px;" bindscroll="scrollllll">
+  <view id="green" class="scroll-view-item bc_green"></view>
+  <view id="red" class="scroll-view-item bc_red"></view>
+  <view id="yellow" class="scroll-view-item bc_yellow"></view>
+  <view id="blue" class="scroll-view-item bc_blue"></view>
+</scroll-view>
+<view>{{scrollTop}}</view>
+<swiper circular indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+  <block wx:for="{{imgUrls}}">
+    <swiper-item>
+      <image src="{{item}}" class="slide-image" width="355" height="150" />
+    </swiper-item>
+  </block>
+</swiper>
+<button bindtap="changeIndicatorDots"> indicator-dots </button>
+<button bindtap="changeAutoplay"> autoplay </button>
+<slider bindchange="intervalChange" show-value min="500" max="2000" /> interval
+<slider bindchange="durationChange" show-value min="1000" max="10000" /> duration
+
+<text>{{motto}}</text>
+
+<rich-text nodes="{{nodes}}"></rich-text>
+
+
+<progress percent="{{num}}" show-info />
+<progress percent="40" stroke-width="12" />
+<progress percent="60" color="pink" />
+<progress percent="80" active />
+
+<!-- <camera device-position="back" flash="on" binderror="error" style="width: 100%; height: 300px;display:none"></camera>
+<button type="primary" bindtap="takePhoto">拍照</button>
+<view>预览</view>
+<image mode="widthFix" src="{{src}}"></image> -->
+
+<view class="section">
+  <view class="section__title">普通选择器</view>
+  <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+    <view class="picker">
+      当前选择：{{array[index]}}
+    </view>
+  </picker>
+</view>
+
+<view class="section">
+  <textarea bindblur="bindTextAreaBlur" auto-height placeholder="自动变高" />
+</view>
+<button bindtap='toLogs'>调到日志页</button>
+<navigator url="/pages/detail/detail">跳转详情页</navigator>

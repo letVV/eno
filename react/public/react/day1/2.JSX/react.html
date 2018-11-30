@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="demo"></div>
+    <script src="../../js/react.js"></script>
+    <script src="../../js/react-dom.js"></script>
+    <script src="../../js/babel.js"></script>
+    <!-- JSX -->
+    <script type="text/babel">
+        var data = {
+            name:"laoxie",
+            src:"../../../images/handsome.jpeg",
+            num:1,
+            ed: function (params) {
+                return params+"ed"
+            },
+            src1: function(){
+                return "../../../images/handsome.jpeg"
+            },
+            html:function(){
+                return <p>123<span>456</span>789</p>
+            },
+            html2:<p>123<span>456</span>789</p>
+        }
+        ReactDOM.render(
+            <div name={data.name}>
+                <img src={data.src1()} />
+                {data.name}
+                <p>{data.num+1+"1"}</p>
+                <p>{data.ed(data.name)}</p>
+                <div>{data.html()}</div>
+                <div>{(function(){
+                    return "helloworld"
+                })()}</div>
+            </div>,
+            document.querySelector("#demo")
+        )
+    </script>
+</body>
+</html>

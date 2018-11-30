@@ -1,0 +1,43 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/setting/setting",
+    "pages/detail/detail"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "微博",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#666666"
+  },
+  "tabBar": {
+    "color": "#8a8a8a",
+    "selectedColor": "#8a8a8a",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "icons/首页.png",
+        "selectedIconPath": "icons/首页_fill.png"
+      },
+      {
+        "pagePath": "pages/logs/logs",
+        "text": "日志",
+        "iconPath": "icons/个人.png",
+        "selectedIconPath": "icons/个人_fill.png"
+      },
+      {
+        "pagePath": "pages/setting/setting",
+        "text": "设置页",
+        "iconPath": "icons/个人.png",
+        "selectedIconPath": "icons/个人_fill.png"
+      }
+    ],
+    "networkTimeout": {
+      "request": 10000
+    }
+  },
+  "debug": true
+}
